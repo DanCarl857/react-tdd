@@ -3,6 +3,7 @@ import {
     Button
 } from 'react-bootstrap'
 import Gift from './Gift'
+import { max_number } from '../utils'
 
 class App extends Component {
 
@@ -18,10 +19,7 @@ class App extends Component {
         const { gifts } = this.state
         const tempGifts = [...gifts]
 
-        const ids = tempGifts.map(gift => gift.id)
-        const max_id = ids.length > 0 ? Math.max(...ids) : 0
-
-        tempGifts.push({ id: max_id + 1 })
+        tempGifts.push({ id: max_number(tempGifts.map(gift => gift.id)) + 1 })
         this.setState({
             gifts: tempGifts
         })
